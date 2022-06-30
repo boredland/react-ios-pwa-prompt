@@ -15,11 +15,11 @@ module.exports = {
     publicPath: "/dist/",
     umdNamedDefine: true
   },
-  node: {
+  /*node: {
     net: "empty",
     tls: "empty",
     dns: "empty"
-  },
+  },*/
   module: {
     rules: [
       {
@@ -32,8 +32,8 @@ module.exports = {
               modules: {
                 mode: "local",
                 localIdentName: "[sha1:hash:hex:4]",
-                context: path.resolve(__dirname, "src"),
-                hashPrefix: "pwa"
+                //context: path.resolve(__dirname, "src"),
+                //hashPrefix: "pwa"
               }
             }
           },

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect,useMemo,useState} from "react";
 
 import PWAPrompt from "./components/PWAPrompt";
 
@@ -27,18 +27,23 @@ export default ({
   debug = false,
   onClose = () => {},
 }) => {
-  let promptData = JSON.parse(localStorage.getItem("iosPwaPrompt"));
-
-  if (promptData === null) {
-    promptData = { isiOS: deviceCheck(), visits: 0 };
-    localStorage.setItem("iosPwaPrompt", JSON.stringify(promptData));
+  const getPromptData=()=>{
+    let data=JSON.parse(localStorage.getItem("iosPwaPrompt"));
+    if(!data){
+      data = { isiOS: deviceCheck(), visits: 0 };
+      localStorage.setItem("iosPwaPrompt", JSON.stringify(data));
+    }
+    return data;
   }
 
-  if (promptData.isiOS || debug) {
-    const aboveMinVisits = promptData.visits + 1 >= promptOnVisit;
-    const belowMaxVisits = promptData.visits + 1 < promptOnVisit + timesToShow;
+  const [promptData, setPromptData] = useState(getPromptData());
 
-    if (belowMaxVisits || debug) {
+  
+  const aboveMinVisits = useMemo(() => promptData.visits + 1 >= promptOnVisit, [promptData?.visits]);
+  const belowMaxVisits = useMemo(() => promptData.visits + 1 < promptOnVisit + timesToShow, [promptData?.visits]);
+
+  useEffect(()=>{
+    if ((belowMaxVisits || debug) && promptData) {
       localStorage.setItem(
         "iosPwaPrompt",
         JSON.stringify({
@@ -46,24 +51,25 @@ export default ({
           visits: promptData.visits + 1,
         })
       );
-
-      if (aboveMinVisits || debug) {
-        return (
-          <PWAPrompt
-            delay={delay}
-            copyTitle={copyTitle}
-            copyBody={copyBody}
-            copyAddHomeButtonLabel={copyAddHomeButtonLabel}
-            copyShareButtonLabel={copyShareButtonLabel}
-            copyClosePrompt={copyClosePrompt}
-            permanentlyHideOnDismiss={permanentlyHideOnDismiss}
-            promptData={promptData}
-            maxVisits={timesToShow + promptOnVisit}
-            onClose={onClose}
-          />
-        );
-      }
     }
+  }, [belowMaxVisits, promptData])
+
+  if ((promptData.isiOS && belowMaxVisits && aboveMinVisits) || debug) {
+    
+    return (
+      <PWAPrompt
+        delay={delay}
+        copyTitle={copyTitle}
+        copyBody={copyBody}
+        copyAddHomeButtonLabel={copyAddHomeButtonLabel}
+        copyShareButtonLabel={copyShareButtonLabel}
+        copyClosePrompt={copyClosePrompt}
+        permanentlyHideOnDismiss={permanentlyHideOnDismiss}
+        promptData={promptData}
+        maxVisits={timesToShow + promptOnVisit}
+        onClose={onClose}
+      />
+    );
   }
 
   return null;
