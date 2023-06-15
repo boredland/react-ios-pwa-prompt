@@ -1,11 +1,14 @@
 import React from "react";
+import styles from "./PWAPromptComponent.module.css";
 
-const ShareIcon = ({ className, modern = false }) => {
+const ShareIcon: React.FC<{
+  modern?: boolean;
+}> = ({ modern = false }) => {
   if (modern) {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className={className}
+        className={styles.pwaPromptShareIcon}
         viewBox="0 0 566 670"
       >
         <path d="M255 12c4-4 10-8 16-8s12 3 16 8l94 89c3 4 6 7 8 12 2 6 0 14-5 19-7 8-20 9-28 2l-7-7-57-60 2 54v276c0 12-10 22-22 22-12 1-24-10-23-22V110l1-43-60 65c-5 5-13 8-21 6a19 19 0 0 1-16-17c-1-7 2-13 7-18l95-91z" />
@@ -17,7 +20,7 @@ const ShareIcon = ({ className, modern = false }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      className={styles.pwaPromptShareIcon}
       viewBox="0 0 120 169"
     >
       <g fill="currentColor">

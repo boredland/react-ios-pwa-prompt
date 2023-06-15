@@ -1,11 +1,14 @@
 import React from "react";
+import styles from "./PWAPromptComponent.module.css";
 
-const HomeScreenIcon = ({ className, modern = false }) => {
+const HomeScreenIcon: React.FC<{
+  modern?: boolean;
+}> = ({ modern = false }) => {
   if (modern) {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className={className}
+        className={styles.pwaPromptHomeIcon}
         viewBox="0 0 578 584"
       >
         <path d="M101 35l19-1h333c12 0 23 0 35 3 17 3 34 12 44 27 13 16 16 38 16 58v329c0 19 0 39-8 57a65 65 0 0 1-37 37c-18 7-38 7-57 7H130c-21 1-44 0-63-10-14-7-25-20-30-34-6-15-8-30-8-45V121c1-21 5-44 19-61 13-16 33-23 53-25m7 46c-10 1-19 6-24 14-7 8-9 20-9 31v334c0 12 2 25 10 34 9 10 23 12 35 12h336c14 1 30-3 38-15 6-9 8-20 8-31V125c0-12-2-24-10-33-9-9-22-12-35-12H121l-13 1z" />
@@ -17,7 +20,7 @@ const HomeScreenIcon = ({ className, modern = false }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      className={styles.pwaPromptHomeIcon}
       viewBox="55.99425507 31.98999977 157.76574707 157.76371765"
     >
       <path

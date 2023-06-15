@@ -1,12 +1,12 @@
 # React-iOS-PWA-prompt
 
-[![npm version](http://img.shields.io/npm/v/react-ios-pwa-prompt.svg?style=flat)](https://npmjs.org/package/react-ios-pwa-prompt "View this project on npm") ![Gzip file size](https://img.badgesize.io/chrisdancee/react-ios-pwa-prompt/master/dist/react-ios-pwa-prompt.js?compression=gzip)
+[![npm version](http://img.shields.io/npm/v/@boredland/react-ios-pwa-prompt.svg?style=flat)](https://npmjs.org/package/@boredland/react-ios-pwa-prompt "View this project on npm") ![Gzip file size](https://img.badgesize.io/boredland/react-ios-pwa-prompt/master/dist/boredland/react-ios-pwa-prompt.js?compression=gzip)
 
 > Polyfilling PWAs for iOS
 
 [Check out the demo!](https://react-ios-pwa-prompt.vercel.app//)
 
-A React component that provides a customisable Progressive Web App (PWA) prompt telling the user to 'Add to Home Screen'. The prompt behaviour is baked in to Android devices, yet iOS is still lagging behind. This component aims to provide a simple way to provide this functionality on iOS for websites that are PWA-ready. The prompt styles closely match iOS designs for both light and dark UI modes to appear native to the user.
+A React component that provides a customizable Progressive Web App (PWA) prompt telling the user to 'Add to Home Screen'. The prompt behavior is baked in to Android devices, yet iOS is still lagging behind. This component aims to provide a simple way to provide this functionality on iOS for websites that are PWA-ready. The prompt styles closely match iOS designs for both light and dark UI modes to appear native to the user.
 
 <hr>
 
@@ -44,14 +44,14 @@ import PWAPrompt from 'react-ios-pwa-prompt'
 - `promptOnVisit`: pass an integer for the when to start showing the prompt. Defaults to `1` (the first page visit).
 - `delay`: pass an integer in ms to add a delay to the prompt. Defaults to `1000`.
 - `onClose`: pass a function to call upon closing the prompt. Passes the event object as the function argument. Defaults to a noop.
-- `copyTitle`: pass a string to customise the title of the prompt. Defaults to `Add to Home Screen`.
-- `copyBody`: pass a string to customise the body of the prompt. Defaults to `This website has app functionality. Add it to your home screen to use it in fullscreen and while offline.`.
-- `copyShareButtonLabel`: pass a string to customise label of share button. Defaults to `1) Press the 'Share' button`.
-- `copyAddHomeButtonLabel`: pass a string to customise label of add to home instruction. Defaults to `2) Press 'Add to Home Screen'`.
-- `copyClosePrompt`: pass a string to customise label of close button. Defaults to `Cancel`.
+- `copyTitle`: pass a string to customize the title of the prompt. Defaults to `Add to Home Screen`.
+- `copyBody`: pass a string to customize the body of the prompt. Defaults to `This website has app functionality. Add it to your home screen to use it in full-screen and while offline.`.
+- `copyShareButtonLabel`: pass a string to customize label of share button. Defaults to `1) Press the 'Share' button`.
+- `copyAddHomeButtonLabel`: pass a string to customize label of add to home instruction. Defaults to `2) Press 'Add to Home Screen'`.
+- `copyClosePrompt`: pass a string to customize label of close button. Defaults to `Cancel`.
 - `permanentlyHideOnDismiss`: pass a boolean to configure whether to never show the prompt again once dismissed. Defaults to `true` (hide forever).
 - `debug`: pass a boolean to put the prompt into debug mode, showing it on any device at all times. Defaults to `false` (production-mode).
 
-```
+```tsx
 <PWAPrompt promptOnVisit={1} timesToShow={3} copyClosePrompt="Close" permanentlyHideOnDismiss={false}/>
 ```
